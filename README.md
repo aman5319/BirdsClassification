@@ -1,4 +1,4 @@
-# BirdsClassification
+# IndianBirdsClassification
 
 Here are two important Notebook
 

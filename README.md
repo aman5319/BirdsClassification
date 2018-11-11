@@ -25,3 +25,6 @@ _____
 
 Birds.zip file contains 10 CSV files of different birds. With each CSV file having the image URL of the birds.
 
+ 
+
+Till now only First step of IndianBirdsClassifier.ipynb has been replicated and more updates are on the way

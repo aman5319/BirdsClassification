@@ -27,14 +27,26 @@ Birds.zip file contains 10 CSV files of different birds. With each CSV file havi
 
 3. [LrFinder.py](https://github.com/aman5319/BirdsClassification/blob/master/LrFinder.py) 
 
-  ​	This class uses the Cyclic Learning Rate history to find a set of learning rates that can be good  initializations for the One-Cycle training proposed by Leslie Smith in the paper referenced  below.
-  A port of the Fast.ai implementation for Keras.
-  Interpretation
-  ​       Upon visualizing the loss plot, check where the loss starts to increase rapidly. Choose a learning rate at somewhat prior to the corresponding position in the plot for faster convergence. This will be the maximum_lr lr. Choose the max value as this value when passing the `max_val` argument to OneCycleLR callback
-  ​      References:
-  ​          [A disciplined approach to neural network hyper-parameters: Part 1 -- learning rate, batch size, weight_decay, and weight decay](https://arxiv.org/abs/1803.09820)
+   ​	This class uses the Cyclic Learning Rate history to find a set of learning rates that can be good  initializations for the One-Cycle training proposed by Leslie Smith in the paper referenced  below. 
+    	 A port of the Fast.ai implementation for Keras.
+     	Interpretation
+   ​	Upon visualizing the loss plot, check where the loss starts to increase rapidly. Choose a learning rate at somewhat prior to the corresponding position in the plot for faster convergence. This will be the max_lr.
+   ​        References:
+   ​            [A disciplined approach to neural network hyper-parameters: Part 1 -- learning rate, batch size, weight_decay, and weight decay](https://arxiv.org/abs/1803.09820)
 
-
+   ```python
+   #usage
+   from LrFinder import LRFinder
+   
+   lrfind = LRFinder(max_iteration = len(feature_train)//batch_size )
+   history = classifier.fit(feature_train,
+                            label_train,
+                            epochs=1,
+                            batch_size=batch_size,
+                            shuffle=True ,
+                            callbacks=[lrfind] )
+   
+   ```
 
 4. [OneCyclePolicy.py](https://github.com/aman5319/BirdsClassification/blob/master/OneCyclePolicy.py)
 
@@ -44,6 +56,22 @@ Birds.zip file contains 10 CSV files of different birds. With each CSV file havi
    ​	[A disciplined approach to neural network hyper-parameters: Part 1 -- learning rate, batch size, weight_decay, and weight decay](https://arxiv.org/abs/1803.09820)
    ​	[Super-Convergence: Very Fast Training of Residual Networks Using Large Learning Rates](https://arxiv.org/abs/1708.07120)
 
+   ```python
+   #usage
+   from OneCyclePolicy import OneCycleScheduler
+   
+   fit_one_cycle = OneCycleScheduler(num_iteration = len(feature_train)//batch_size ,
+                                     num_epochs =4 ,
+                                     max_lr = 2e-3) #max_lr is the lr you got from  lrfind
+   classifier.fit(feature_train,
+                  label_train ,
+                  epochs=4,
+                  batch_size=batch_size,
+                  shuffle=True,
+                  callbacks=[fit_one_cycle],
+                  validation_data=(feature_test,label_test))
+   
+   ```
 
 
 The [Mnist_callbacks_test.ipynb](https://github.com/aman5319/BirdsClassification/blob/master/Mnist_callbacks_test.ipynb) file contains the test of above two callbacks

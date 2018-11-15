@@ -28,9 +28,13 @@ Birds.zip file contains 10 CSV files of different birds. With each CSV file havi
 3. [LrFinder.py](https://github.com/aman5319/BirdsClassification/blob/master/LrFinder.py) 
 
    ​	This class uses the Cyclic Learning Rate history to find a set of learning rates that can be good  initializations for the One-Cycle training proposed by Leslie Smith in the paper referenced  below. 
-    	 A port of the Fast.ai implementation for Keras.
-     	Interpretation
+   
+   ​	A port of the Fast.ai implementation for Keras.
+   
+   ​	Interpretation
+   
    ​	Upon visualizing the loss plot, check where the loss starts to increase rapidly. Choose a learning rate at somewhat prior to the corresponding position in the plot for faster convergence. This will be the max_lr.
+   
    ​        References:
    ​            [A disciplined approach to neural network hyper-parameters: Part 1 -- learning rate, batch size, weight_decay, and weight decay](https://arxiv.org/abs/1803.09820)
 

@@ -25,6 +25,25 @@ _____
 
 Birds.zip file contains 10 CSV files of different birds. With each CSV file having the image URL of the birds.
 
- 
+3. [LrFinder.py](https://github.com/aman5319/BirdsClassification/blob/master/LrFinder.py) 
 
-Till now only First step of IndianBirdsClassifier.ipynb has been replicated and more updates are on the way
+  ​	This class uses the Cyclic Learning Rate history to find a set of learning rates that can be good  initializations for the One-Cycle training proposed by Leslie Smith in the paper referenced  below.
+  A port of the Fast.ai implementation for Keras.
+  Interpretation
+  ​       Upon visualizing the loss plot, check where the loss starts to increase rapidly. Choose a learning rate at somewhat prior to the corresponding position in the plot for faster convergence. This will be the maximum_lr lr. Choose the max value as this value when passing the `max_val` argument to OneCycleLR callback
+  ​      References:
+  ​          [A disciplined approach to neural network hyper-parameters: Part 1 -- learning rate, batch size, weight_decay, and weight decay](https://arxiv.org/abs/1803.09820)
+
+
+
+4. [OneCyclePolicy.py](https://github.com/aman5319/BirdsClassification/blob/master/OneCyclePolicy.py)
+
+   ​	This callback implements a cyclical learning rate policy (CLR). This is a special case of Cyclic Learning Rates, where we have only 1 cycle. After the completion of 1 cycle, the learning rate will decrease rapidly to 10000th its initial lowest value.
+      Reference
+
+   ​	[A disciplined approach to neural network hyper-parameters: Part 1 -- learning rate, batch size, weight_decay, and weight decay](https://arxiv.org/abs/1803.09820)
+   ​	[Super-Convergence: Very Fast Training of Residual Networks Using Large Learning Rates](https://arxiv.org/abs/1708.07120)
+
+
+
+The [Mnist_callbacks_test.ipynb](https://github.com/aman5319/BirdsClassification/blob/master/Mnist_callbacks_test.ipynb) file contains the test of above two callbacks
